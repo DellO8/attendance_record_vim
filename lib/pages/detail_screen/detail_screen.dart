@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key, required this.students}) : super(key: key);
@@ -46,6 +47,17 @@ class DetailsScreen extends StatelessWidget {
                        style: const TextStyle(
                          color: Colors.blueGrey,
                        ),),
+                   ],
+                 ),
+                 Row(
+                   mainAxisAlignment: MainAxisAlignment.center,
+                   children: [
+                     ElevatedButton(
+                         onPressed: (){
+                          String studentContact = students["contact"];
+                          Share.share(studentContact);
+                         },
+                         child: const Text('Share Contact'))
                    ],
                  )
                ],

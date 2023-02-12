@@ -13,8 +13,10 @@ import 'package:flutter/material.dart';
 
  class _AttendancePageState1 extends State<AttendancePage1> {
 
-   final TextEditingController _controller = TextEditingController();
+   final TextEditingController _controller1 = TextEditingController();
+   final TextEditingController _controller2 = TextEditingController();
    final _scrollcontroller = ScrollController();
+
 
    int? format;
 
@@ -163,15 +165,16 @@ import 'package:flutter/material.dart';
      builder: (context)=>  AlertDialog(
        title: const Text('Name'),
        content:  Column(
+         mainAxisSize: MainAxisSize.min,
          children:[
            TextField(
              decoration:  const InputDecoration(hintText: 'Enter name'),
-             controller: _controller,
+             controller: _controller1,
              onChanged: (value){},
            ),
            TextField(
              decoration:  const InputDecoration(hintText: 'Enter contact'),
-             controller: _controller,
+             controller: _controller2,
              onChanged: (value){},
            ),
          ]
@@ -188,9 +191,9 @@ import 'package:flutter/material.dart';
    void _submitData() {
 
      setState(() {
-       students.add({"names": _controller.text,
+       students.add({"names": _controller1.text,
          "timestamp": DateFormat("dd MMM yyyy, h:mm a").format(DateTime.now()),
-          "contact": _controller.text});
+          "contact": _controller2.text});
           _sortDate();
            const snackbar = SnackBar(content:
              Text("Added to the list"),
@@ -198,7 +201,8 @@ import 'package:flutter/material.dart';
              );
              ScaffoldMessenger.of(context).showSnackBar(snackbar);
            });
-           _controller.clear();
+           _controller1.clear();
+           _controller2.clear();
            Navigator.of(context).pop();
    }
 
@@ -244,8 +248,8 @@ import 'package:flutter/material.dart';
        results = students;
      }else{
        results = students
-           .where((_students) =>
-           _students["names"].toLowerCase().contains(enteredKeyword.toLowerCase()))
+           .where((user) =>
+           user["names"].toLowerCase().contains(enteredKeyword.toLowerCase()))
            .toList();
      }
      setState ((){

@@ -7,10 +7,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 Future main() async{
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
-    final prefs = await SharedPreferences.getInstance();
-    final showHome = prefs.getBool('showHome') ?? false;
+  final prefs = await SharedPreferences.getInstance();
+  final showHome = prefs.getBool('showHomes') ?? false;
+
 }
 
 class OnboardingScreen extends StatefulWidget {
@@ -44,7 +45,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           ),
           Container(
-            alignment: const Alignment(0,0.75),
+            alignment: const Alignment(0,0.85),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
