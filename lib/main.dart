@@ -7,7 +7,7 @@ Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
   final prefs = await SharedPreferences.getInstance();
-  final showHomes = prefs.getBool('showHome') ?? false;
+  final showHomes = prefs.getBool('showHomee') ?? false;
 
   runApp(MyApp(showHomes: showHomes));
 }
@@ -20,11 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-
-        primarySwatch: Colors.blue,
-      ),
+      debugShowCheckedModeBanner: false,
       home: showHomes ? const HomePage() : const OnboardingScreen(),
     );
   }

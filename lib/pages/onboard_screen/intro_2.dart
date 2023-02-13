@@ -6,8 +6,7 @@ class Intro2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
+      body:Column(
           children: [
             const SizedBox(height: 100,),
 
@@ -23,34 +22,35 @@ class Intro2 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: const [
                     SizedBox(height: 25,),
-                    Image(image: AssetImage('lib/images/image_2.png'),),
+                    Image(image: AssetImage('lib/images/intor_2.png'),
+                    height: 235,),
                   ],
                 ),
               ),
             ),
-            const SizedBox(height: 40,),
+            const SizedBox(height: 30,),
             Container(
               padding: const EdgeInsets.only(left: 20,right: 20),
               alignment: Alignment.center,
               child: Column (
                 children: const[
-                  Text('Track Daily    Attendance',
+                  Text('Looking for Specific User',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.blueGrey,
                         fontSize: 30
                     ),),
                   SizedBox(height: 20,),
-                  Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s.',
+                  Text('Quickly and easily find what you are looking for with the search function, just key in the search bar.',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
                     textAlign: TextAlign.justify,)
                 ],
               ),
             ),
-
           ],
         ),
-      ),
-
     );
   }
 }

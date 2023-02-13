@@ -25,7 +25,8 @@ class Intro3 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: const [
                     SizedBox(height: 25,),
-                    Image(image: AssetImage('lib/images/image_3.png'),),
+                    Image(image: AssetImage('lib/images/intro_3.png'),
+                    height: 235,),
                   ],
                 ),
               ),
@@ -36,14 +37,17 @@ class Intro3 extends StatelessWidget {
               alignment: Alignment.center,
               child: Column (
                 children: const[
-                  Text('Boost Productivity    Now',
+                  Text('See More Details',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.blueGrey,
                         fontSize: 30
                     ),),
                   SizedBox(height: 20,),
-                  Text('It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ',
+                  Text('Simply click to see more details of any user attendance record in the list. What to share details? just click Share!',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
                     textAlign: TextAlign.justify,)
                 ],
               ),

@@ -1,8 +1,9 @@
  import 'package:attendance_list_v/pages/detail_screen/detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
  import 'package:intl/intl.dart';
  import 'package:shared_preferences/shared_preferences.dart';
-
+ import 'package:fluttertoast/fluttertoast.dart';
 
  class AttendancePage1 extends StatefulWidget {
    const AttendancePage1({Key? key}) : super(key: key);
@@ -26,15 +27,15 @@ import 'package:flutter/material.dart';
 
    List<Map<String, dynamic>> students =[
 
-     {"names":"Dell", "timestamp":"11 Feb 2023, 08:00 AM","contact":"123456789"},
-     {"names":"Oxford", "timestamp":"11 Feb 2023, 08:00 AM","contact":"123456789"},
-     {"names":"valentine", "timestamp":"11 Feb 2023, 08:01 AM","contact":"123456789"},
-     {"names":"Brian", "timestamp":"11 Feb 2023, 08:02 AM","contact":"123456789"},
-     {"names":"John", "timestamp":"11 Feb 2023, 08:02 AM","contact":"123456789"},
-     {"names":"Rick", "timestamp":"11 Feb 2023, 08:02 AM","contact":"123456789"},
-     {"names":"Ollie", "timestamp":"11 Feb 2023, 08:03 AM","contact":"123456789"},
-     {"names":"Max", "timestamp":"11 Feb 2023, 08:04 AM","contact":"123456789"},
-     {"names":"Jacob", "timestamp":"11 Feb 2023, 08:04 AM","contact":"123456789"},
+     {"names":"Dell", "timestamp":"11 Feb 2023, 08:00 AM","contact":"111111111"},
+     {"names":"Oxford", "timestamp":"11 Feb 2023, 08:00 AM","contact":"222222222"},
+     {"names":"valentine", "timestamp":"11 Feb 2023, 08:01 AM","contact":"333333333"},
+     {"names":"Brian", "timestamp":"11 Feb 2023, 08:02 AM","contact":"444444444"},
+     {"names":"John", "timestamp":"11 Feb 2023, 08:02 AM","contact":"55555555"},
+     {"names":"Rick", "timestamp":"11 Feb 2023, 08:02 AM","contact":"666666666"},
+     {"names":"Ollie", "timestamp":"11 Feb 2023, 08:03 AM","contact":"7777777777"},
+     {"names":"Max", "timestamp":"11 Feb 2023, 08:04 AM","contact":"888888888"},
+     {"names":"Jacob", "timestamp":"11 Feb 2023, 08:04 AM","contact":"999999999"},
      {"names":"Ledford", "timestamp":"11 Feb 2023, 08:04 AM","contact":"123456789"},
    ];
 
@@ -54,12 +55,13 @@ import 'package:flutter/material.dart';
          bool isTop = _scrollcontroller.position.pixels == 0;
          if (isTop) {
          } else {
-           const snackbar = SnackBar(
-               content: Text('You have reached the end of the list'),
-              duration: Duration(seconds:  3,
-             ),
-           );
-           ScaffoldMessenger.of(context).showSnackBar(snackbar);
+           Fluttertoast.showToast(msg: 'You have reached the end of the list');
+           // const snackbar = SnackBar(
+           //     content: Text('You have reached the end of the list'),
+           //    duration: Duration(seconds:  3,
+           //   ),
+           // );
+           // ScaffoldMessenger.of(context).showSnackBar(snackbar);
          }
        }
      });
@@ -81,10 +83,8 @@ import 'package:flutter/material.dart';
 
          actions: [
 
-           ToggleButtons(children: const [
-             Icon(Icons.timer_outlined),
-             Icon(Icons.edit)
-           ], isSelected: _selection,
+           ToggleButtons(
+             isSelected: _selection,
               onPressed: (int index){
                 setState(() {
                   _selection[index]=!_selection[index];
@@ -99,6 +99,11 @@ import 'package:flutter/material.dart';
              color: Colors.white,
              selectedColor: Colors.orange,
              renderBorder: false,
+
+                 children: const <Widget>[
+                   Icon(Icons.timer_outlined),
+                   Icon(Icons.edit)
+             ],
            )
          ],
        ),
@@ -120,12 +125,13 @@ import 'package:flutter/material.dart';
                    controller: _scrollcontroller,
                    itemCount: _foundSearch.length,
                    itemBuilder: (context, index){
-                     return ListTile(
+                     return Card(
+                      child: ListTile(
                        leading: CircleAvatar(child: Text(_foundSearch[index]["names"][0]),),
                        title: Text(_foundSearch[index]["names"]),
                        onTap: (){
-                         Navigator.push(context, 
-                             MaterialPageRoute(builder: (context)=>DetailsScreen(students: students[index]),
+                         Navigator.push(context,
+                             MaterialPageRoute(builder: (context)=>DetailsScreen(students: _foundSearch[index]),
                              ),
                          );
                        },
@@ -140,22 +146,42 @@ import 'package:flutter/material.dart';
                          },
                        )
                            : null,
+                       )
                      );
+
                    },
                  ),
+
                )
              ],
            )
        ),
 
 
-       floatingActionButton: FloatingActionButton(
-         onPressed: () async{
-           final name = await openDialog();
-           if (name == null || name.isEmpty) return;
+       floatingActionButton: SpeedDial(
+         animatedIcon: AnimatedIcons.menu_close,
+         backgroundColor: Colors.teal,
+         overlayColor: Colors.black,
+         overlayOpacity: 0.3,
+         children: [
+           SpeedDialChild(
+             child: const Icon(Icons.add),
+             label: 'Add',
+             onTap: () async{
+                 final name = await openDialog();
+                 if (name == null || name.isEmpty) return;
+               },
+           ),
+           SpeedDialChild(
+           child: const Icon(Icons.qr_code),
+           label: 'QR Scan'
+           )
+         ],
+         // onPressed: () async{
+         //   final name = await openDialog();
+         //   if (name == null || name.isEmpty) return;
 
-         },
-         child: const Icon(Icons.add),
+         //},
        ),
      );
 
@@ -183,6 +209,7 @@ import 'package:flutter/material.dart';
          TextButton(
            onPressed: _submitData,
            child: const Text('Submit'),
+
          ),
        ],
      ),);
@@ -195,11 +222,12 @@ import 'package:flutter/material.dart';
          "timestamp": DateFormat("dd MMM yyyy, h:mm a").format(DateTime.now()),
           "contact": _controller2.text});
           _sortDate();
-           const snackbar = SnackBar(content:
-             Text("Added to the list"),
-               duration: Duration(seconds: 3),
-             );
-             ScaffoldMessenger.of(context).showSnackBar(snackbar);
+           Fluttertoast.showToast(msg: 'Added to the list');
+           // const snackbar = SnackBar(content:
+           //   Text("Added to the list"),
+           //     duration: Duration(seconds: 3),
+           //   );
+           //   ScaffoldMessenger.of(context).showSnackBar(snackbar);
            });
            _controller1.clear();
            _controller2.clear();

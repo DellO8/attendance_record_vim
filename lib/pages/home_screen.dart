@@ -23,12 +23,17 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Row(
-                children: const [
-                  Icon(
+                children: [
+                  const Icon(
                     Icons.account_circle_outlined,
 
                   ),
+                  Expanded(child:Container()),
+                  const Icon(
+                    Icons.menu_rounded,
+                  ),
                 ],
+
               ),
               const SizedBox(height: 20,),
               Row(
@@ -39,6 +44,7 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(
                       fontSize: 35,
                       color: Colors.purple,
+                      fontStyle: FontStyle.italic,
                     ),
                   )
                 ],
@@ -59,22 +65,28 @@ class _HomePageState extends State<HomePage> {
                     children: [
 
                       const Text(
-                        "Class Code",
+                        "UBI3232",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Colors.white,
                         ),
                       ),
                       const Text(
-                        "Class Name",
+                        "English",
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 26,
                           color: Colors.white,
                         ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          const Text('Group AB',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          Expanded(child: Container()),
                           IconButton(
                               iconSize: 20,
                               icon : const Icon(Icons.arrow_forward_ios),
@@ -112,22 +124,28 @@ class _HomePageState extends State<HomePage> {
                     children: [
 
                       const Text(
-                        "Class Code",
+                        "MTK3013",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Colors.white,
                         ),
                       ),
                       const Text(
-                        "Class Name",
+                        "Mathematics",
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 26,
                           color: Colors.white,
                         ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          const Text('Group A',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                          ),
+                          Expanded(child: Container()),
                           IconButton(
                               iconSize: 20,
                               icon : const Icon(Icons.arrow_forward_ios),
@@ -167,20 +185,26 @@ class _HomePageState extends State<HomePage> {
                       const Text(
                         "Class Code",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Colors.white,
                         ),
                       ),
                       const Text(
                         "Class Name",
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 26,
                           color: Colors.white,
                         ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          const Text('Class Group',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          Expanded(child: Container()),
                           IconButton(
                               iconSize: 20,
                               icon : const Icon(Icons.arrow_forward_ios),

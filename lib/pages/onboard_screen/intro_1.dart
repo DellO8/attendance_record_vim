@@ -25,25 +25,27 @@ class Intro1 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: const [
                     SizedBox(height: 25,),
-                    Image(image: AssetImage('lib/images/image_1.png'),),
+                    Image(image: AssetImage('lib/images/intro_1.png'),
+                        height: 235,),
                   ],
                 ),
               ),
              ),
-           const SizedBox(height: 40,),
+           const SizedBox(height: 30,),
            Container(
              padding: const EdgeInsets.only(left: 10,right: 20),
              alignment: Alignment.center,
              child: Column (
                children: const[
-                 Text('Efficient Students Presence',
+                 Text('Simple yet practical',
                    textAlign: TextAlign.center,
                    style: TextStyle(
                      color: Colors.blueGrey,
                        fontSize: 30
                    ),),
                  SizedBox(height: 20,),
-                 Text('Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+                 Text('Browse the list of class attendance to see the records and Add new attendance record both manual and QRscan.',
+                 style: TextStyle(fontSize: 16),
                  textAlign: TextAlign.justify,)
                ],
              ),

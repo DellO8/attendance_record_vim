@@ -6,13 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-Future main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-
-  final prefs = await SharedPreferences.getInstance();
-  final showHome = prefs.getBool('showHomes') ?? false;
-
-}
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -62,7 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   GestureDetector(
                     onTap: ()async {
                       final pref = await SharedPreferences.getInstance();
-                      pref.setBool('showHome', true);
+                      pref.setBool('showHomee', true);
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context)=> const HomePage()),
                       );
